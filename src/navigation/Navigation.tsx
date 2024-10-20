@@ -3,8 +3,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import SplashScreen from '@features/auth/SplashScreen';
 import { navigationRef } from '@utils/NavigationUtils';
-import CustomerLogin from '@features/auth/CustomerLogin';
-import DeliveryLogin from '@features/auth/DeliveryLogin';
+import CustomerLogin from '@views/auth/CustomerLogin';
+import DeliveryLogin from '@views/auth/DeliveryLogin';
 const Stack = createNativeStackNavigator();
 const Navigation:FC = () =>{
   return(

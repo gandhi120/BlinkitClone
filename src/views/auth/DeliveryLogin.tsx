@@ -4,7 +4,7 @@ import { Text, View } from 'react-native';
 const DeliveryLogin = ()=> {
     return (
       <View>
-        <Text> CustomerLogin </Text>
+        <Text> DeliveryLogin </Text>
       </View>
     );
 };

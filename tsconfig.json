@@ -12,7 +12,8 @@
       "@components/*":["components/*"],
       "@state/*":["state/*"],
       "@utils/*":["utils/*"],
-      "@store/*": ["store/*"]
+      "@store/*": ["store/*"],
+      "@views/*": ["views/*"],
     }
   }
 }
