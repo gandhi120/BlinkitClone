@@ -3,10 +3,13 @@ import { screenHeight, screenWidth } from '@utils/Scaling';
 import React, { FC, useEffect } from 'react';
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Logo from '@assets/images/splash_logo.jpeg';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {  increment } from '@store/slice/counterSlice';
-import type { RootState } from '@store/store';
+// import {setUser} from '@store/slice/authSlice';
+// import type { RootState } from '@store/store';
 import GeoLocation from '@react-native-community/geolocation';
+import reduxStorage from '@store/mmkvStorage/storage';
+import { resetAndNavigate } from '@utils/NavigationUtils';
 
 GeoLocation.setRNConfiguration({
   skipPermissionRequests:false,
@@ -16,11 +19,25 @@ GeoLocation.setRNConfiguration({
 });
 
 const SplashScreen:FC = ()=> {
+  // const {user} = useSelector((state: RootState) => state.auth);
+
+const tokenCheck = async()=>{
+  const accessToken = reduxStorage.getItem('accessToken');
+  console.log('accessToken',accessToken);
+  // const refreshToken = reduxStorage.getItem('refreshToken');
+  // if(accessToken){
+
+  // }
+  resetAndNavigate("CustomerLogin")
+  return false;
+};
+
 
   useEffect(()=>{
     const fetchUserLocation = async()=>{
       try {
         GeoLocation.requestAuthorization();
+        tokenCheck();
       } catch (error) {
         Alert.alert('Sorry we need location service to give you better shopping experience');
       }
@@ -28,7 +45,7 @@ const SplashScreen:FC = ()=> {
     const timeOutId = setTimeout(fetchUserLocation, 2000);
     return()=>clearTimeout(timeOutId);
   });
-  const count = useSelector((state: RootState) => state.counter.value);
+
   const dispatch = useDispatch();
     return (
       <View style={style.container}>
@@ -38,7 +55,7 @@ const SplashScreen:FC = ()=> {
         />
         <TouchableOpacity onPress={()=>dispatch(increment())}>
           <Text>Touch it and buy coin</Text>
-          <Text>{count}</Text>
+          <Text>{'count'}</Text>
         </TouchableOpacity>
       </View>
     );
