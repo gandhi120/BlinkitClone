@@ -8,13 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* greenGroserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* greenGroserTests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-greenGroser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-greenGroser.a */; };
+		08FF2063F46F40AE902206F7 /* Okra-MediumLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C7E1581CC2F4103BC24D48C /* Okra-MediumLight.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		28BBB6A6DC854C3B83EA5AAA /* Okra-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 274DFCD77A024B94A1ED9405 /* Okra-Medium.ttf */; };
+		2D4D002535958F7C9C11ABF3 /* libPods-greenGroser-greenGroserTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A2A6C35CE16633E67EE4C09 /* libPods-greenGroser-greenGroserTests.a */; };
 		39A95522D322E036D1D1E4D5 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 7588ACAF631F04300094769E /* PrivacyInfo.xcprivacy */; };
-		7699B88040F8A987B510C191 /* libPods-greenGroser-greenGroserTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-greenGroser-greenGroserTests.a */; };
+		797190759C1B47CCBA26B458 /* Okra-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AFE878ABB2C40BAB6E7BA7B /* Okra-ExtraBold.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		845EA0E70AAC4AE98C2C0C5A /* Okra-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50EE8604F37D40FDB088DE2F /* Okra-Regular.ttf */; };
+		E59015A19AB2BA1FE679DFC4 /* libPods-greenGroser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2E25D225C820760482CE481 /* libPods-greenGroser.a */; };
+		EBCE4C7B65304F6BA954FFCB /* Okra-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7FA9F8D286954AD2A5BD8F24 /* Okra-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,14 +43,19 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = greenGroser/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = greenGroser/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = greenGroser/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-greenGroser-greenGroserTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-greenGroser-greenGroserTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B4392A12AC88292D35C810B /* Pods-greenGroser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-greenGroser.debug.xcconfig"; path = "Target Support Files/Pods-greenGroser/Pods-greenGroser.debug.xcconfig"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-greenGroser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-greenGroser.release.xcconfig"; path = "Target Support Files/Pods-greenGroser/Pods-greenGroser.release.xcconfig"; sourceTree = "<group>"; };
-		5B7EB9410499542E8C5724F5 /* Pods-greenGroser-greenGroserTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-greenGroser-greenGroserTests.debug.xcconfig"; path = "Target Support Files/Pods-greenGroser-greenGroserTests/Pods-greenGroser-greenGroserTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-greenGroser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-greenGroser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		274DFCD77A024B94A1ED9405 /* Okra-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Okra-Medium.ttf"; path = "../src/assets/fonts/Okra-Medium.ttf"; sourceTree = "<group>"; };
+		50EE8604F37D40FDB088DE2F /* Okra-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Okra-Regular.ttf"; path = "../src/assets/fonts/Okra-Regular.ttf"; sourceTree = "<group>"; };
+		69CE93B19752F5424D268E56 /* Pods-greenGroser-greenGroserTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-greenGroser-greenGroserTests.release.xcconfig"; path = "Target Support Files/Pods-greenGroser-greenGroserTests/Pods-greenGroser-greenGroserTests.release.xcconfig"; sourceTree = "<group>"; };
+		6AFE878ABB2C40BAB6E7BA7B /* Okra-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Okra-ExtraBold.ttf"; path = "../src/assets/fonts/Okra-ExtraBold.ttf"; sourceTree = "<group>"; };
+		72B88C7713C830E89325E392 /* Pods-greenGroser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-greenGroser.debug.xcconfig"; path = "Target Support Files/Pods-greenGroser/Pods-greenGroser.debug.xcconfig"; sourceTree = "<group>"; };
 		7588ACAF631F04300094769E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = greenGroser/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		7A2A6C35CE16633E67EE4C09 /* libPods-greenGroser-greenGroserTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-greenGroser-greenGroserTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FA9F8D286954AD2A5BD8F24 /* Okra-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Okra-Bold.ttf"; path = "../src/assets/fonts/Okra-Bold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = greenGroser/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		89C6BE57DB24E9ADA2F236DE /* Pods-greenGroser-greenGroserTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-greenGroser-greenGroserTests.release.xcconfig"; path = "Target Support Files/Pods-greenGroser-greenGroserTests/Pods-greenGroser-greenGroserTests.release.xcconfig"; sourceTree = "<group>"; };
+		8C7E1581CC2F4103BC24D48C /* Okra-MediumLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Okra-MediumLight.ttf"; path = "../src/assets/fonts/Okra-MediumLight.ttf"; sourceTree = "<group>"; };
+		B2E25D225C820760482CE481 /* libPods-greenGroser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-greenGroser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1D76B4F5E16AED21331DCB6 /* Pods-greenGroser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-greenGroser.release.xcconfig"; path = "Target Support Files/Pods-greenGroser/Pods-greenGroser.release.xcconfig"; sourceTree = "<group>"; };
+		D5F2549053CE1D427990F798 /* Pods-greenGroser-greenGroserTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-greenGroser-greenGroserTests.debug.xcconfig"; path = "Target Support Files/Pods-greenGroser-greenGroserTests/Pods-greenGroser-greenGroserTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -54,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-greenGroser-greenGroserTests.a in Frameworks */,
+				2D4D002535958F7C9C11ABF3 /* libPods-greenGroser-greenGroserTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-greenGroser.a in Frameworks */,
+				E59015A19AB2BA1FE679DFC4 /* libPods-greenGroser.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,12 +111,25 @@
 			name = greenGroser;
 			sourceTree = "<group>";
 		};
+		2225DB383B7047BD8E5E9476 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7FA9F8D286954AD2A5BD8F24 /* Okra-Bold.ttf */,
+				6AFE878ABB2C40BAB6E7BA7B /* Okra-ExtraBold.ttf */,
+				274DFCD77A024B94A1ED9405 /* Okra-Medium.ttf */,
+				8C7E1581CC2F4103BC24D48C /* Okra-MediumLight.ttf */,
+				50EE8604F37D40FDB088DE2F /* Okra-Regular.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-greenGroser.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-greenGroser-greenGroserTests.a */,
+				B2E25D225C820760482CE481 /* libPods-greenGroser.a */,
+				7A2A6C35CE16633E67EE4C09 /* libPods-greenGroser-greenGroserTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -127,6 +150,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				2225DB383B7047BD8E5E9476 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -145,10 +169,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-greenGroser.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-greenGroser.release.xcconfig */,
-				5B7EB9410499542E8C5724F5 /* Pods-greenGroser-greenGroserTests.debug.xcconfig */,
-				89C6BE57DB24E9ADA2F236DE /* Pods-greenGroser-greenGroserTests.release.xcconfig */,
+				72B88C7713C830E89325E392 /* Pods-greenGroser.debug.xcconfig */,
+				D1D76B4F5E16AED21331DCB6 /* Pods-greenGroser.release.xcconfig */,
+				D5F2549053CE1D427990F798 /* Pods-greenGroser-greenGroserTests.debug.xcconfig */,
+				69CE93B19752F5424D268E56 /* Pods-greenGroser-greenGroserTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -160,12 +184,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "greenGroserTests" */;
 			buildPhases = (
-				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
+				67D16925DB6819047B2A9B44 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */,
-				F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */,
+				CDE014D786EA3FA25B16F0FD /* [CP] Embed Pods Frameworks */,
+				C75B83FB2622E477D9C6A8F4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -181,13 +205,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "greenGroser" */;
 			buildPhases = (
-				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				D4BB3A094682E5512C370D4B /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
-				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				4B0F2DC69C152B04AB4C16CC /* [CP] Embed Pods Frameworks */,
+				5E85342035ACE52F89A0EA8F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -249,6 +273,11 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				39A95522D322E036D1D1E4D5 /* PrivacyInfo.xcprivacy in Resources */,
+				EBCE4C7B65304F6BA954FFCB /* Okra-Bold.ttf in Resources */,
+				797190759C1B47CCBA26B458 /* Okra-ExtraBold.ttf in Resources */,
+				28BBB6A6DC854C3B83EA5AAA /* Okra-Medium.ttf in Resources */,
+				08FF2063F46F40AE902206F7 /* Okra-MediumLight.ttf in Resources */,
+				845EA0E70AAC4AE98C2C0C5A /* Okra-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +300,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
+		4B0F2DC69C152B04AB4C16CC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -288,7 +317,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-greenGroser/Pods-greenGroser-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
+		5E85342035ACE52F89A0EA8F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-greenGroser/Pods-greenGroser-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-greenGroser/Pods-greenGroser-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-greenGroser/Pods-greenGroser-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		67D16925DB6819047B2A9B44 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -310,7 +356,41 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
+		C75B83FB2622E477D9C6A8F4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-greenGroser-greenGroserTests/Pods-greenGroser-greenGroserTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-greenGroser-greenGroserTests/Pods-greenGroser-greenGroserTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-greenGroser-greenGroserTests/Pods-greenGroser-greenGroserTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDE014D786EA3FA25B16F0FD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-greenGroser-greenGroserTests/Pods-greenGroser-greenGroserTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-greenGroser-greenGroserTests/Pods-greenGroser-greenGroserTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-greenGroser-greenGroserTests/Pods-greenGroser-greenGroserTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D4BB3A094682E5512C370D4B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -330,57 +410,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-greenGroser-greenGroserTests/Pods-greenGroser-greenGroserTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-greenGroser-greenGroserTests/Pods-greenGroser-greenGroserTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-greenGroser-greenGroserTests/Pods-greenGroser-greenGroserTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-greenGroser/Pods-greenGroser-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-greenGroser/Pods-greenGroser-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-greenGroser/Pods-greenGroser-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-greenGroser-greenGroserTests/Pods-greenGroser-greenGroserTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-greenGroser-greenGroserTests/Pods-greenGroser-greenGroserTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-greenGroser-greenGroserTests/Pods-greenGroser-greenGroserTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -416,7 +445,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-greenGroser-greenGroserTests.debug.xcconfig */;
+			baseConfigurationReference = D5F2549053CE1D427990F798 /* Pods-greenGroser-greenGroserTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -443,7 +472,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-greenGroser-greenGroserTests.release.xcconfig */;
+			baseConfigurationReference = 69CE93B19752F5424D268E56 /* Pods-greenGroser-greenGroserTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -467,7 +496,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-greenGroser.debug.xcconfig */;
+			baseConfigurationReference = 72B88C7713C830E89325E392 /* Pods-greenGroser.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -494,7 +523,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-greenGroser.release.xcconfig */;
+			baseConfigurationReference = D1D76B4F5E16AED21331DCB6 /* Pods-greenGroser.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
