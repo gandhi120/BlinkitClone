@@ -17,6 +17,7 @@ module.exports = {
           '@styles': './src/styles',
           '@store': './src/store',
           '@views': './src/views',
+          '@theme': './src/theme',
         },
       },
     ],
