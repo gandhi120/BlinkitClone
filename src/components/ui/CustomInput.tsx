@@ -17,7 +17,7 @@ const CustomInput:FC<InputProps&React.ComponentProps<typeof TextInput>>
     ...props
  }) => {
     return(
-        <View>
+        <View style={styles.flexRow}>
             {left}
             <TextInput
                 {...props}

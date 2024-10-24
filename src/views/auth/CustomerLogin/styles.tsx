@@ -5,6 +5,11 @@ const styles = StyleSheet.create({
         flex:1,
         backgroundColor:'white',
     },
+    text:{
+        marginTop:2,
+        marginBottom:25,
+        opacity:0.8,
+    },
     subContainer:{
         flex:1,
         justifyContent:'flex-end',
@@ -25,6 +30,13 @@ const styles = StyleSheet.create({
         borderRadius:20,
         marginVertical:10,
     },
+    phoneText:{
+        marginLeft:10,
+    },
+    gradient:{
+        paddingTop:60,
+        width:'100%',
+    }
   });
 
   export default styles;
