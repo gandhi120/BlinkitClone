@@ -3,13 +3,15 @@ import { screenHeight, screenWidth } from '@utils/Scaling';
 import React, { FC, useEffect } from 'react';
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Logo from '@assets/images/splash_logo.jpeg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {  increment } from '@store/slice/counterSlice';
-// import {setUser} from '@store/slice/authSlice';
-// import type { RootState } from '@store/store';
 import GeoLocation from '@react-native-community/geolocation';
-// import reduxStorage from '@store/mmkvStorage/storage';
 import { resetAndNavigate } from '@utils/NavigationUtils';
+import reduxStorage from '@store/mmkvStorage/storage';
+import {jwtDecode} from 'jwt-decode';
+import { refetchToken } from '@store/slice/authSlice';
+import { RootState } from '@store/store';
+
 
 GeoLocation.setRNConfiguration({
   skipPermissionRequests:false,
@@ -18,16 +20,48 @@ GeoLocation.setRNConfiguration({
   locationProvider:'auto',
 });
 
+interface DecodedToken{
+  exp:number;
+}
+
 const SplashScreen:FC = ()=> {
-  // const {user} = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
+  const {user} = useSelector((state: RootState) => state.auth);
 
 const tokenCheck = async()=>{
-  // const accessToken = await reduxStorage.getItem('accessToken');
-  // console.log('accessToken',accessToken);
-  // const refreshToken = reduxStorage.getItem('refreshToken');
-  // if(accessToken){
+  const accessToken = await reduxStorage.getItem('accessToken');
+  const refreshToken = await reduxStorage.getItem('refreshToken');
 
-  // }
+  if(accessToken){
+      const decodedAccessToken = jwtDecode<DecodedToken>(accessToken);
+      const decodedRefreshToken = jwtDecode<DecodedToken>(refreshToken);
+      const currentTime = Date.now() / 1000;
+
+      if(decodedRefreshToken.exp < currentTime){
+        resetAndNavigate('CustomerLogin');
+        Alert.alert('Session expired ,Please Login again');
+        return false;
+      }
+
+      if(decodedAccessToken.exp < currentTime){
+        try {
+          dispatch(refetchToken());
+          // refetchUser();
+        } catch (error) {
+          console.log('error',error);
+          Alert.alert('There was an erroring refreshing token');
+          return false;
+        }
+      }
+
+      if(user?.role === 'Customer'){
+        resetAndNavigate('ProductDashboard');
+      }else{
+        resetAndNavigate('CustomerLogin');
+      }
+      return false;
+  }
+
   resetAndNavigate('CustomerLogin');
   return false;
 };
@@ -46,7 +80,6 @@ const tokenCheck = async()=>{
     return()=>clearTimeout(timeOutId);
   });
 
-  const dispatch = useDispatch();
     return (
       <View style={style.container}>
         <Image

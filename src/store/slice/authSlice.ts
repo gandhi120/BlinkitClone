@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {apiClient} from '@service/authService';
-import reduxStorage from '@store/mmkvStorage/storage';
+import reduxStorage, { clearAllData } from '@store/mmkvStorage/storage';
+import { resetAndNavigate } from '@utils/NavigationUtils';
 interface AuthState {
   user: Record<string,any>|null;
   currentOrder:Record<string,any>|null
@@ -29,6 +30,17 @@ export const fetchUser = createAsyncThunk('fetchUser', async (params:string,thun
     return thunkApi.rejectWithValue(error);
   }
 
+});
+
+// Create an async thunk for the API call
+export const refetchToken = createAsyncThunk('refetchToken', async (_,thunkApi) => {
+  try {
+    const refreshToken = await reduxStorage.getItem('refreshToken');
+    const response = await apiClient.post('/refresh-token/login', {refreshToken} );
+    return response.data;
+  } catch (error) {
+    return thunkApi.rejectWithValue(error);
+  }
 });
 
 const authSlice = createSlice({
@@ -60,6 +72,18 @@ const authSlice = createSlice({
     });
     builder.addCase(fetchUser.rejected,(state)=>{
       state.loading = false;
+    });
+    builder.addCase(refetchToken.fulfilled,(state,action)=>{
+      console.log('refreshToken.fulfilled');
+      const {accessToken,refreshToken} = action.payload;
+      state.accessToken = accessToken;
+      reduxStorage.setItem('accessToken',accessToken);
+      reduxStorage.setItem('refreshToken',refreshToken);
+      state.loading = false;
+    });
+    builder.addCase(refetchToken.rejected,()=>{
+      clearAllData();
+      resetAndNavigate('CustomerLogin');
     });
   },
 });

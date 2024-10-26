@@ -2,6 +2,7 @@ import { CommonActions, createNavigationContainerRef, StackActions } from '@reac
 
 export const navigationRef = createNavigationContainerRef();
 
+
 export const  navigate = async(routeName:string,params?:object)=>{
     navigationRef.isReady();
     if(navigationRef.isReady()){

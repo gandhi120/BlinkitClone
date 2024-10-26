@@ -19,4 +19,9 @@ const reduxStorage: Storage = {
   },
 };
 
+export const clearAllData = () => {
+  storage.clearAll();
+  return Promise.resolve();
+};
+
 export default reduxStorage;
