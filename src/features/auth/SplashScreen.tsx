@@ -8,7 +8,7 @@ import {  increment } from '@store/slice/counterSlice';
 // import {setUser} from '@store/slice/authSlice';
 // import type { RootState } from '@store/store';
 import GeoLocation from '@react-native-community/geolocation';
-import reduxStorage from '@store/mmkvStorage/storage';
+// import reduxStorage from '@store/mmkvStorage/storage';
 import { resetAndNavigate } from '@utils/NavigationUtils';
 
 GeoLocation.setRNConfiguration({
@@ -22,13 +22,13 @@ const SplashScreen:FC = ()=> {
   // const {user} = useSelector((state: RootState) => state.auth);
 
 const tokenCheck = async()=>{
-  const accessToken = reduxStorage.getItem('accessToken');
-  console.log('accessToken',accessToken);
+  // const accessToken = await reduxStorage.getItem('accessToken');
+  // console.log('accessToken',accessToken);
   // const refreshToken = reduxStorage.getItem('refreshToken');
   // if(accessToken){
 
   // }
-  resetAndNavigate("CustomerLogin")
+  resetAndNavigate('CustomerLogin');
   return false;
 };
 

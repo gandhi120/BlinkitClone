@@ -1,32 +1,66 @@
-import { createSlice } from '@reduxjs/toolkit';
-
-interface authSlice{
-    user:Record<string,any>|null;
-    setUser:(user:any)=>void;
-    setCurrentOrder:(order:any)=>void;
-    currentOrder:Record<string,any>|null;
-    logout:()=>void;
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {apiClient} from '@service/authService';
+import reduxStorage from '@store/mmkvStorage/storage';
+interface AuthState {
+  user: Record<string,any>|null;
+  currentOrder:Record<string,any>|null
+  loading: boolean;
+  accessToken: string;
 }
 
-const initialState = {
-    user: null,
-    currentOrder: null,
+
+const initialState:AuthState = {
+  user: null,
+  currentOrder: null,
+  loading: false,
+  accessToken: '',
 };
+
+// Create an async thunk for the API call
+export const fetchUser = createAsyncThunk('fetchUser', async (params:string,thunkApi) => {
+  try {
+    console.log('params',params);
+
+    const phone = params;
+    const response = await apiClient.post('/customer/login', {phone} );
+    return response.data;
+  } catch (error) {
+    console.log('error',error);
+    return thunkApi.rejectWithValue(error);
+  }
+
+});
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setUser: (state, action) => {
+    setUser: (state, action: PayloadAction<any>) => {
       state.user = action.payload;
     },
-    setCurrentOrder: (state,action) => {
+    setCurrentOrder: (state,action: PayloadAction<any>) => {
       state.currentOrder = action.payload;
     },
     logout:(state)=>{
       state.user = null;
       state.currentOrder = null;
-    }
+    },
+  },
+  extraReducers:(builder)=>{
+    builder.addCase(fetchUser.pending,(state)=>{
+      state.loading = true;
+    });
+    builder.addCase(fetchUser.fulfilled,(state,action: PayloadAction<any>)=>{
+      const {accessToken,refreshToken,customer} = action.payload;
+      state.loading = false;
+      state.user = customer;
+      state.accessToken = accessToken;
+      reduxStorage.setItem('accessToken',accessToken);
+      reduxStorage.setItem('refreshToken',refreshToken);
+    });
+    builder.addCase(fetchUser.rejected,(state)=>{
+      state.loading = false;
+    });
   },
 });
 

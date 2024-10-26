@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
-import { Animated, Image, View } from 'react-native';
+import { Alert, Animated, Image, Keyboard, View } from 'react-native';
 import {GestureHandlerRootView, PanGestureHandler, State} from 'react-native-gesture-handler';
 import CustomSafeAreaView from '@views/component/CustomSafeAreaView';
 import ProductSlider from '@views/component/login/ProductSlider/productSlider';
@@ -11,12 +11,16 @@ import CustomInput from '@components/ui/CustomInput';
 import CustomButton from '@components/ui/CustomButton';
 import useKeyBoardOffsetHeight from '@utils/useKeyBoardOffsetheight';
 import LinearGradient from 'react-native-linear-gradient';
+import { useDispatch } from 'react-redux';
+import { fetchUser } from '@store/slice/authSlice';
 
 const bottomColors = [...lightColors].reverse();
 
 const CustomerLogin:FC = ()=> {
+
+const dispatch = useDispatch();
 const [phoneNumber,setPhoneNumber] = useState('');
-const [loading] = useState(false);
+const [loading,setLoading] = useState(false);
 const[gestureSequence,setGestureSequence] = useState<string[]>([]);
 const keyBoardOffsetHeight = useKeyBoardOffsetHeight();
 
@@ -38,9 +42,21 @@ useEffect(()=>{
       useNativeDriver:true,
     }).start();
   }
-},[keyBoardOffsetHeight]);
+},[keyBoardOffsetHeight,animatedValue]);
 
-const handleAuth = async()=>{};
+const handleAuth = async()=>{
+  Keyboard.dismiss();
+  setLoading(true);
+  try {
+    dispatch(fetchUser(phoneNumber));
+    // await customerLogin(phoneNumber);
+    resetAndNavigate('ProductDashboard');
+  } catch (error) {
+    Alert.alert('Login Failed');
+  }finally{
+    setLoading(false);
+  }
+};
 
 
   const handleGesture = ({nativeEvent}:any)=>{
