@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import SplashScreen from '@features/auth/SplashScreen';
 import { navigationRef } from '@utils/NavigationUtils';
 import CustomerLogin from '@views/auth/CustomerLogin/CustomerLogin';
-import DeliveryLogin from '@views/auth/DeliveryLogin';
+import DeliveryLogin from '@views/auth/deliveryLogin/DeliveryLogin';
 import ProductDashboard from '@views/dashboard/productDashboard';
 import DeliveryDashboard from '@views/dashboard/deliveryDashboard/DeliveryDashboard';
 const Stack = createNativeStackNavigator();

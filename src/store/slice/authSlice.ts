@@ -26,6 +26,23 @@ export const reFetchUser = createAsyncThunk('reFetchUser', async (_,thunkApi) =>
     return thunkApi.rejectWithValue(error);
   }
 });
+interface UpdateUserParams {
+    password: string;
+    email: string;
+}
+
+export const deliveryLogin = createAsyncThunk<any,UpdateUserParams>('deliveryLogin', async ( {email, password } ,thunkApi) => {
+  console.log('email',email);
+  console.log('password',password);
+  try {
+    const response = await apiClient.post('/delivery/login', {email,password} );
+    return response.data;
+  } catch (error) {
+    return thunkApi.rejectWithValue(error);
+  }
+
+});
+
 
 export const fetchUser = createAsyncThunk('fetchUser', async (params:string,thunkApi) => {
   try {
@@ -96,6 +113,16 @@ const authSlice = createSlice({
       state.user = user;
     });
     builder.addCase(reFetchUser.rejected,(state)=>{
+      state.loading = false;
+    });
+    builder.addCase(deliveryLogin.fulfilled,(state,action)=>{
+      const {deliveryPartner,accessToken,refreshToken} = action.payload;
+      state.user = deliveryPartner;
+      state.accessToken = accessToken;
+      reduxStorage.setItem('accessToken',accessToken);
+      reduxStorage.setItem('refreshToken',refreshToken);
+    });
+    builder.addCase(deliveryLogin.rejected,(state)=>{
       state.loading = false;
     });
   },
