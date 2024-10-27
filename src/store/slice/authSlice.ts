@@ -18,15 +18,21 @@ const initialState:AuthState = {
 };
 
 // Create an async thunk for the API call
+export const reFetchUser = createAsyncThunk('reFetchUser', async (_,thunkApi) => {
+  try {
+    const response = await apiClient.get('/user');
+    return response.data;
+  } catch (error) {
+    return thunkApi.rejectWithValue(error);
+  }
+});
+
 export const fetchUser = createAsyncThunk('fetchUser', async (params:string,thunkApi) => {
   try {
-    console.log('params',params);
-
     const phone = params;
     const response = await apiClient.post('/customer/login', {phone} );
     return response.data;
   } catch (error) {
-    console.log('error',error);
     return thunkApi.rejectWithValue(error);
   }
 
@@ -84,6 +90,13 @@ const authSlice = createSlice({
     builder.addCase(refetchToken.rejected,()=>{
       clearAllData();
       resetAndNavigate('CustomerLogin');
+    });
+    builder.addCase(reFetchUser.fulfilled,(state,action)=>{
+      const {user} = action.payload;
+      state.user = user;
+    });
+    builder.addCase(reFetchUser.rejected,(state)=>{
+      state.loading = false;
     });
   },
 });

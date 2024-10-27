@@ -9,7 +9,7 @@ import GeoLocation from '@react-native-community/geolocation';
 import { resetAndNavigate } from '@utils/NavigationUtils';
 import reduxStorage from '@store/mmkvStorage/storage';
 import {jwtDecode} from 'jwt-decode';
-import { refetchToken } from '@store/slice/authSlice';
+import { refetchToken, reFetchUser } from '@store/slice/authSlice';
 import { RootState } from '@store/store';
 
 
@@ -46,6 +46,7 @@ const tokenCheck = async()=>{
       if(decodedAccessToken.exp < currentTime){
         try {
           dispatch(refetchToken());
+          dispatch(reFetchUser());
           // refetchUser();
         } catch (error) {
           console.log('error',error);
