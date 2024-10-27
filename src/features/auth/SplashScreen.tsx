@@ -57,6 +57,8 @@ const tokenCheck = async()=>{
 
       if(user?.role === 'Customer'){
         resetAndNavigate('ProductDashboard');
+      } if(user?.role === 'DeliveryPartner'){
+        resetAndNavigate('DeliveryDashboard');
       }else{
         resetAndNavigate('CustomerLogin');
       }

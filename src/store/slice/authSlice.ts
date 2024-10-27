@@ -32,8 +32,6 @@ interface UpdateUserParams {
 }
 
 export const deliveryLogin = createAsyncThunk<any,UpdateUserParams>('deliveryLogin', async ( {email, password } ,thunkApi) => {
-  console.log('email',email);
-  console.log('password',password);
   try {
     const response = await apiClient.post('/delivery/login', {email,password} );
     return response.data;
