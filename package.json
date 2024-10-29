@@ -27,6 +27,7 @@
     "lottie-react-native": "7.0.0",
     "react": "18.3.1",
     "react-native": "0.75.4",
+    "react-native-collapsible": "^1.6.2",
     "react-native-device-info": "13.1.0",
     "react-native-extra-dimensions-android": "1.2.5",
     "react-native-gesture-handler": "2.20.0",

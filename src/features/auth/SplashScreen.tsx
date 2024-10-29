@@ -54,10 +54,9 @@ const tokenCheck = async()=>{
           return false;
         }
       }
-
       if(user?.role === 'Customer'){
         resetAndNavigate('ProductDashboard');
-      } if(user?.role === 'DeliveryPartner'){
+      }else if(user?.role === 'DeliveryPartner'){
         resetAndNavigate('DeliveryDashboard');
       }else{
         resetAndNavigate('CustomerLogin');
