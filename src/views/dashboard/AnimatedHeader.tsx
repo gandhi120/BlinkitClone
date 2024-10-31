@@ -1,5 +1,5 @@
 import { useCollapsibleContext } from '@r0b0t3d/react-native-collapsible';
-import Header from '@views/component/Header';
+import Header from '@views/component/dashboard/Header';
 import React, { FC } from 'react';
 import {  StyleSheet } from 'react-native';
 import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated';

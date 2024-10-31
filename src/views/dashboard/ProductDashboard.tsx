@@ -7,7 +7,7 @@ import Visuals from './Visuals';
 import { CollapsibleContainer, CollapsibleHeaderContainer, CollapsibleScrollView, withCollapsibleContext } from '@r0b0t3d/react-native-collapsible';
 import AnimatedHeader from './AnimatedHeader';
 import StickSearchBar from './StickSearchBar';
-import Content from '@views/component/Content';
+import Content from '@views/component/dashboard/Content';
 import CustomText from '@components/ui/CustomText';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Fonts } from '@utils/Constants';

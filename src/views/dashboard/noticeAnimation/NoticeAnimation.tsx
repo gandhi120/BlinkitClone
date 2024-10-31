@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { Animated as RNAnimated ,View} from 'react-native';
 import styles from './styles';
 import { NoticeHeight } from '@utils/Scaling';
-import Notice from '@views/component/Notice';
+import Notice from '@views/component/dashboard/Notice';
 
 
 const NOTICE_HEIGHT = -[NoticeHeight + 12];

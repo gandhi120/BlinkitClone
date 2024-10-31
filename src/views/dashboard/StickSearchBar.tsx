@@ -3,7 +3,7 @@ import { Colors } from '@utils/Constants';
 import React, { FC } from 'react';
 import {  StyleSheet } from 'react-native';
 import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated';
-import SearchBar from './SearchBar';
+import SearchBar from '../component/dashboard/SearchBar';
 
 const StickSearchBar:FC = () => {
 const{scrollY} = useCollapsibleContext();
