@@ -1,19 +1,20 @@
 
 import React, { useEffect, useRef } from 'react';
-import { Animated as RNanimated, SafeAreaView, Text, View } from 'react-native';
+import { Animated as RNanimated, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import NoticeAnimation from './noticeAnimation/NoticeAnimation';
 import { NoticeHeight } from '@utils/Scaling';
 import Visuals from './Visuals';
+import { CollapsibleContainer, CollapsibleHeaderContainer, withCollapsibleContext } from '@r0b0t3d/react-native-collapsible';
+import AnimatedHeader from './AnimatedHeader';
+import StickSearchBar from './StickSearchBar';
 
 
 const NOTICE_HEIGHT = -[NoticeHeight + 12];
-console.log('NOTICE_HEIGHT',NOTICE_HEIGHT);
 
 
 const ProductDashboard = ()=> {
 
   const noticePosition = useRef(new RNanimated.Value(NOTICE_HEIGHT)).current;
-  console.log('NOTICE_HEIGHT:noticePosition',noticePosition);
 
 
   const slideUp = ()=>{
@@ -48,11 +49,31 @@ const ProductDashboard = ()=> {
         <>
         <Visuals/>
         <SafeAreaView/>
-          <View style={{flex:1}}>
-            <Text> {'ProductDashboard'} </Text>
-          </View>
+         <CollapsibleContainer style={styles.panelContainer}>
+          <CollapsibleHeaderContainer containerStyle={styles.transparent}>
+                <AnimatedHeader
+                  showNotice={()=>{
+                    slideDown();
+                    const timeOutId = setTimeout(() => {
+                      slideUp();
+                    }, 3000);
+                    return()=>clearTimeout(timeOutId);
+                  }}
+                />
+                <StickSearchBar/>
+          </CollapsibleHeaderContainer>
+         </CollapsibleContainer>
         </>
       </NoticeAnimation>
     );
 };
-export default ProductDashboard;
+export default withCollapsibleContext(ProductDashboard);
+
+const styles = StyleSheet.create({
+  panelContainer:{
+    flex:1,
+  },
+  transparent:{
+    backgroundColor:'transparent',
+  },
+});
