@@ -17,6 +17,22 @@ const Content = () => {
         Grocery & Kitchen
       </CustomText>
       <CategoryContainer data={categories}/>
+
+      <CustomText variant="h5" fontFamily={Fonts.SemiBold}>
+        Bestsellers
+      </CustomText>
+      <CategoryContainer data={categories}/>
+
+      <CustomText variant="h5" fontFamily={Fonts.SemiBold}>
+       Snacks and drinks
+      </CustomText>
+      <CategoryContainer data={categories}/>
+
+      <CustomText variant="h5" fontFamily={Fonts.SemiBold}>
+       Home and Lifestyle
+      </CustomText>
+      <CategoryContainer data={categories}/>
+
     </View>
   );
 };
