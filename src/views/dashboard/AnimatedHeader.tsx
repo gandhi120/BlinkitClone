@@ -1,7 +1,7 @@
 import { useCollapsibleContext } from '@r0b0t3d/react-native-collapsible';
 import Header from '@views/component/Header';
-import React, { FC, useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import React, { FC } from 'react';
+import {  StyleSheet } from 'react-native';
 import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated';
 
 const AnimatedHeader:FC<{showNotice:()=>void}> = ({showNotice}) => {
