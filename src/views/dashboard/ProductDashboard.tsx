@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
-import { Animated as RNanimated, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Animated as RNanimated, SafeAreaView, StyleSheet } from 'react-native';
 import NoticeAnimation from './noticeAnimation/NoticeAnimation';
 import { NoticeHeight } from '@utils/Scaling';
 import Visuals from './Visuals';
