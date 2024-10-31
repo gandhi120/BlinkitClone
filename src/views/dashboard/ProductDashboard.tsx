@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
-import { Animated as RNanimated, SafeAreaView, StyleSheet } from 'react-native';
+import { Animated as RNanimated, SafeAreaView, StyleSheet, View } from 'react-native';
 import NoticeAnimation from './noticeAnimation/NoticeAnimation';
 import { NoticeHeight } from '@utils/Scaling';
 import Visuals from './Visuals';
@@ -8,6 +8,9 @@ import { CollapsibleContainer, CollapsibleHeaderContainer, CollapsibleScrollView
 import AnimatedHeader from './AnimatedHeader';
 import StickSearchBar from './StickSearchBar';
 import Content from '@views/component/Content';
+import CustomText from '@components/ui/CustomText';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { Fonts } from '@utils/Constants';
 
 
 const NOTICE_HEIGHT = -[NoticeHeight + 12];
@@ -70,6 +73,17 @@ const ProductDashboard = ()=> {
               showsVerticalScrollIndicator={false}
             >
               <Content/>
+
+              <View style={{backgroundColor:'#F8F8F8',padding:20}} >
+                <CustomText fontSize={RFValue(32)} fontFamily={Fonts.Bold} style={{opacity:0.2}}>
+                  India's last minute app
+                </CustomText>
+                <CustomText
+                fontFamily={Fonts.Bold}
+                style={{marginTop:10,paddingBottom:100,opacity:0.2}}>
+                  Developed By Varun gandhi
+                </CustomText>
+              </View>
             </CollapsibleScrollView>
          </CollapsibleContainer>
         </>
