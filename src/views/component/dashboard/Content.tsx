@@ -2,13 +2,14 @@
 import { adData } from '@utils/dummyData';
 import React  from 'react';
 import {  StyleSheet, Text, View } from 'react-native';
+import AdCarousal from './AdCarousal';
 
 const Content = () => {
 
 
   return (
     <View style={styles.container}>
-      {/* <AdCarousal adData={adData}> */}
+      <AdCarousal adData={adData}/>
     </View>
   );
 };
