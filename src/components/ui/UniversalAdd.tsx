@@ -1,5 +1,5 @@
-import React, { FC, useState } from 'react';
-import { Button, Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { FC } from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/store';
 import { Colors, Fonts } from '@utils/Constants';
@@ -12,9 +12,8 @@ import{addItem,getItemCount,removeItem} from '@store/slice/cartSlice';
 
 const UniversalAdd:FC<{item:any}> = ({item}) => {
     const dispatch = useDispatch();
-    // const {itemCount,totalCount} = useSelector((state: RootState) => state.cart);
-const count = 0;//dispatch(getItemCount(item?._id));
-
+    const {cart} = useSelector((state: RootState) => state.cart);
+    const count = getItemCount(cart,item._id);
 
   return (
     <View style={[styles.container,{backgroundColor:count === 0 ? '#fff' : Colors.secondary}]}>
