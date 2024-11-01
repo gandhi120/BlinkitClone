@@ -13,7 +13,7 @@ interface CartState {
     addItem:(item:any)=>void;
     removeItem:(id:string|number)=>void;
     clearCart:()=>void;
-    getItemCount:(id:string|number)=>void;
+    getItemCount:(id:string|number)=>number;
     getTotalPrice:()=>number;
 }
 
@@ -22,11 +22,16 @@ const initialState:CartState = {
   cart:[],
   itemCount:0,
   totalCount:0,
+  addItem: (item: CartItem) => { /* implement function */ },
+  removeItem: (id: string | number) => { /* implement function */ },
+  clearCart: () => { /* implement function */ },
+  getItemCount: (id: string | number) => 0, // Default return
+  getTotalPrice: () => 0, // Default return
 };
 
 
 // Create an async thunk for the API call
-export const refetchToken = createAsyncThunk('refetchToken', async (_,thunkApi) => {
+// export const refetchToken = createAsyncThunk('refetchToken', async (_,thunkApi) => {
 //   try {
 //     const refreshToken = await reduxStorage.getItem('refreshToken');
 //     const response = await apiClient.post('/refresh-token/login', {refreshToken} );
@@ -34,16 +39,22 @@ export const refetchToken = createAsyncThunk('refetchToken', async (_,thunkApi) 
 //   } catch (error) {
 //     return thunkApi.rejectWithValue(error);
 //   }
-});
+// });ß
 
 const cartSlice = createSlice({
-  name: 'cartSlice',
+  name: 'cart',
   initialState,
   reducers: {
     addItem: (state, action: PayloadAction<any>) => {
+        console.log('action.payload',action.payload);
+        console.log('action.cart',state.cart);
+
+
         const item = action.payload;
         const currentCart = state.cart;
         const existingItemIndex = currentCart.findIndex(cartItem=>cartItem?._id === item?._id);
+console.log('existingItemIndex',existingItemIndex);
+
         //WHEN ITEM EXIST..
         if(existingItemIndex >= 0){
             const updatedCart = [...currentCart];
@@ -51,6 +62,8 @@ const cartSlice = createSlice({
                 ...updatedCart[existingItemIndex],
                 count:updatedCart[existingItemIndex].count + 1,
             };
+            console.log('updatedCart',updatedCart);
+
         //set updated cart..
             state.cart = updatedCart;
         }else{

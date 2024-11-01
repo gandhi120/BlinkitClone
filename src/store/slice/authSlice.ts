@@ -95,7 +95,6 @@ const authSlice = createSlice({
       state.loading = false;
     });
     builder.addCase(refetchToken.fulfilled,(state,action)=>{
-      console.log('refreshToken.fulfilled');
       const {accessToken,refreshToken} = action.payload;
       state.accessToken = accessToken;
       reduxStorage.setItem('accessToken',accessToken);
