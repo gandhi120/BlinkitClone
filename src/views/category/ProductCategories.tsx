@@ -2,9 +2,10 @@
 import CustomHeader from '@components/ui/CustomHeader';
 import { Colors } from '@utils/Constants';
 import React, { FC, useEffect, useState } from 'react';
-import {  ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import {  ActivityIndicator, StyleSheet, View } from 'react-native';
 import Sidebar from './Sidebar';
-import { getAllCategories } from '@service/ProductCategories';
+import { getAllCategories,getProductByCategoryById } from '@service/ProductCategories';
+import ProductList from './ProductList';
 
 const ProductCategories:FC = () => {
 const [categories,setCategories] = useState<any[]>([]);
@@ -32,6 +33,23 @@ useEffect(()=>{
   fetchCategories();
 },[]);
 
+const fetchProducts = async(categoryId:string)=>{
+  try {
+    setProductsLoading(true);
+    const data = await getProductByCategoryById(categoryId);
+    setProducts(data);
+  } catch (error) {
+  }finally{
+    setProductsLoading(false);
+  }
+};
+
+useEffect(()=>{
+  if(selectedCategory?._id){
+    fetchProducts(selectedCategory?._id);
+  }
+},[selectedCategory]);
+
 
 
   return (
@@ -48,6 +66,11 @@ useEffect(()=>{
             />
           )
           }
+          {productsLoading ?
+          (<ActivityIndicator size={'large'} color={Colors.border} style={styles.center}/>) :
+          (<ProductList data={products || []}/>)
+          }
+
         </View>
     </View>
   );

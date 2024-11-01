@@ -1,19 +1,22 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { persistStore, persistReducer } from 'redux-persist';
+import { persistReducer, persistStore } from 'redux-persist';
 import  counterReducer   from '@store/slice/counterSlice';
 import reduxStorage from './mmkvStorage/storage';
 import authSlice from '@store/slice/authSlice';
+import cartSlice from '@store/slice/cartSlice';
+
 
 
 const reducer = combineReducers({
   counter:counterReducer,
   auth:authSlice,
+  cart:cartSlice,
 });
 
 const persistConfig = {
   key: 'root',
   storage:reduxStorage,
-  whitelist: ['counter','auth'],
+  whitelist: ['counter','auth','cart'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);
