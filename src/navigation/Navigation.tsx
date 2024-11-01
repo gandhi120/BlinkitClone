@@ -8,6 +8,7 @@ import DeliveryLogin from '@views/auth/deliveryLogin/DeliveryLogin';
 import ProductDashboard from '@views/dashboard/ProductDashboard';
 import DeliveryDashboard from '@views/dashboard/deliveryDashboard/DeliveryDashboard';
 import ProductCategories from '@views/category/ProductCategories';
+// import Altitude from '@views/Altitude';
 const Stack = createNativeStackNavigator();
 const Navigation:FC = () =>{
   return(
@@ -32,6 +33,7 @@ const Navigation:FC = () =>{
           animation:'fade',
         }}
         name="DeliveryLogin" component={DeliveryLogin}/>
+        {/* <Stack.Screen name="Altitude" component={Altitude}/> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

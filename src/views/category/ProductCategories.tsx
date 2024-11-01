@@ -1,25 +1,72 @@
 
-import React from 'react';
-import {  StyleSheet, Text, View } from 'react-native';
+import CustomHeader from '@components/ui/CustomHeader';
+import { Colors } from '@utils/Constants';
+import React, { FC, useEffect, useState } from 'react';
+import {  ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import Sidebar from './Sidebar';
+import { getAllCategories } from '@service/ProductCategories';
 
-const ProductCategories = () => {
+const ProductCategories:FC = () => {
+const [categories,setCategories] = useState<any[]>([]);
+const [selectedCategory,setSelectedCategory] = useState<any>(null);
+const [products,setProducts] = useState<any[]>([]);
+const [categoriesLoading,setCategoriesLoading] = useState<boolean>(true);
+const [productsLoading,setProductsLoading] = useState<boolean>(false);
+
+
+const fetchCategories = async()=>{
+  try {
+    setCategoriesLoading(true);
+    const data = await getAllCategories();
+    setCategories(data);
+    if(data && data.length > 0){
+      setSelectedCategory(data[0]);
+    }
+  } catch (error) {
+  }finally{
+    setCategoriesLoading(false);
+  }
+};
+
+useEffect(()=>{
+  fetchCategories();
+},[]);
+
+
+
   return (
-    <View>
-      <Text>{'ProductCategories'}</Text>
+    <View style={styles.mainContainer}>
+      <CustomHeader title={selectedCategory?.name || 'Categories'} search/>
+        <View style={styles.subContainer}>
+          {categoriesLoading ? (<ActivityIndicator size={'small'} color={Colors.border}/>) :
+
+          (
+            <Sidebar
+                categories={categories}
+                selectedCategory={selectedCategory}
+                onCategoryPress={(category:any)=>setSelectedCategory(category)}
+            />
+          )
+          }
+        </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f8f9fa',
+  mainContainer: {
+   flex:1,
+   backgroundColor:'white',
   },
-  greetingText: {
-    fontSize: 24,
-    marginBottom: 20,
+  subContainer: {
+    flex:1,
+    flexDirection:'row',
+    alignItems:'center',
+  },
+  center:{
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center',
   },
 });
 
