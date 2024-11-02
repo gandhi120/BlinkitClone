@@ -6,7 +6,7 @@ import { screenHeight, screenWidth } from '@utils/Scaling';
 import React, { FC } from 'react';
 import {  Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons';
+import  Icon  from 'react-native-vector-icons/MaterialIcons';
 
 interface CartSummaryProps{
     cartCount:number;
@@ -27,7 +27,7 @@ const CartSummary:FC<CartSummaryProps> = ({cartCount,cartImage}) => {
             >
                 {cartCount} ITEM{cartCount > 1 ? 'S' : ''}
             </CustomText>
-            <Icon name="arrow-up" color={Colors.secondary} size={RFValue(25)}/>
+            <Icon name="arrow-drop-up" color={Colors.secondary} size={RFValue(25)}/>
         </View>
 
         <TouchableOpacity style={styles.btn}

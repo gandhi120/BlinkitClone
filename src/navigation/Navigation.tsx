@@ -8,6 +8,7 @@ import DeliveryLogin from '@views/auth/deliveryLogin/DeliveryLogin';
 import ProductDashboard from '@views/dashboard/ProductDashboard';
 import DeliveryDashboard from '@views/dashboard/deliveryDashboard/DeliveryDashboard';
 import ProductCategories from '@views/category/ProductCategories';
+import ProductOrder from '@views/order/ProductOrder';
 // import Altitude from '@views/Altitude';
 const Stack = createNativeStackNavigator();
 const Navigation:FC = () =>{
@@ -23,6 +24,8 @@ const Navigation:FC = () =>{
         <Stack.Screen name="ProductDashboard" component={ProductDashboard}/>
         <Stack.Screen name="ProductCategories" component={ProductCategories}/>
         <Stack.Screen name="DeliveryDashboard" component={DeliveryDashboard}/>
+        <Stack.Screen name="ProductOrder" component={ProductOrder}/>
+
 
 
         <Stack.Screen options={{

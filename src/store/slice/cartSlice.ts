@@ -38,6 +38,14 @@ export const getItemCount = (cart:any,itemId:string)=>{
     return count;
 };
 
+
+
+export const getTotalPriceCount = (cart:any)=>{
+    let totalCount = 0;
+    totalCount = cart.reduce((total:any,cartItem:any)=>total + cartItem?.item?.price * cartItem?.count,0);
+    return totalCount;
+};
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
