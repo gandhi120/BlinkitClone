@@ -13,3 +13,13 @@ export const createOrder =  async (items:any,totalPrice:number) => {
       return null;
     }
   };
+
+
+export const getOrderById =  async (orderId:string) => {
+  try {
+    const response = await apiClient.get(`/order/${orderId}`);
+    return response.data;
+  } catch (error) {
+    return null;
+  }
+};

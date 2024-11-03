@@ -14,6 +14,8 @@ import { Fonts } from '@utils/Constants';
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import  Icon  from 'react-native-vector-icons/Ionicons';
 import withCart from '@views/cart/WithCart';
+import WithLiveStatus from '@views/map/WithLiveStatus';
+import withLiveStatus from '@views/map/WithLiveStatus';
 
 
 const NOTICE_HEIGHT = -[NoticeHeight + 12];
@@ -129,7 +131,7 @@ const backToTopStyle = useAnimatedStyle(()=>{
       </NoticeAnimation>
     );
 };
-export default withCart(withCollapsibleContext(ProductDashboard));
+export default withLiveStatus( withCart(withCollapsibleContext(ProductDashboard)));
 
 const styles = StyleSheet.create({
   panelContainer:{

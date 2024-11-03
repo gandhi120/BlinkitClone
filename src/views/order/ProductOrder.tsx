@@ -6,7 +6,7 @@ import OrderList from './OrderList';
 import  Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { RFValue } from 'react-native-responsive-fontsize';
 import CustomText from '@components/ui/CustomText';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/store';
 import { clearCart, getTotalPriceCount } from '@store/slice/cartSlice';
 import { setCurrentOrder } from '@store/slice/authSlice';
@@ -17,6 +17,8 @@ import { navigate } from '@utils/NavigationUtils';
 import { createOrder } from '@service/orderService';
 
 const ProductOrder = () => {
+  const dispatch = useDispatch();
+
   const {cart} = useSelector((state: RootState) => state.cart);
   const {user,currentOrder} = useSelector((state: RootState) => state.auth);
 
@@ -31,7 +33,7 @@ const handlePlaceOrder = async()=>{
 
   const formateData = cart.map(item=>({
     id:item._id,
-    item:item,
+    item:item._id,
     count:item.count,
   }));
 
@@ -42,8 +44,9 @@ const handlePlaceOrder = async()=>{
   setLoading(true);
 
   const data = await createOrder(formateData,totalPrice);
+
   if(data !== null){
-    setCurrentOrder(data);
+    dispatch(setCurrentOrder(data));
     clearCart();
     navigate('OrderSuccess',{...data});
   }else{
