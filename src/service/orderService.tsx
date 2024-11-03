@@ -10,6 +10,7 @@ export const createOrder =  async (items:any,totalPrice:number) => {
       });
       return response.data;
     } catch (error) {
+    console.log('createOrder ERROR',error);
       return null;
     }
   };
@@ -20,6 +21,20 @@ export const getOrderById =  async (orderId:string) => {
     const response = await apiClient.get(`/order/${orderId}`);
     return response.data;
   } catch (error) {
+    console.log('getOrderById ERROR',error);
+    return null;
+  }
+};
+
+
+export const fetchCustomerOrder =  async (userId:string) => {
+  console.log('userId',userId);
+
+  try {
+    const response = await apiClient.get(`/order?customerId=${userId}`);
+    return response.data;
+  } catch (error) {
+    console.log('fetchCustomerOrder ERROR',error);
     return null;
   }
 };
