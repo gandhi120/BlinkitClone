@@ -1,9 +1,7 @@
 import { RootState } from '@store/store';
-import React, { FC } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { FC, useEffect } from 'react';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import CartAnimationWrapper from './CartAnimationWrapper';
-import CartSummary from './CartSummary';
 import { setCurrentOrder } from '@store/slice/authSlice';
 import { useNavigationState } from '@react-navigation/native';
 import { getOrderById } from '@service/orderService';
@@ -11,6 +9,8 @@ import { hocStyles } from '@styles/globalStyles';
 import CustomText from '@components/ui/CustomText';
 import { Colors, Fonts } from '@utils/Constants';
 import { navigate } from '@utils/NavigationUtils';
+import  io  from 'socket.io-client';
+import { SOCKET_URL } from '@service/config';
 
 
 
@@ -27,6 +27,31 @@ const withLiveStatus = <P extends object>(WrappedComponent:React.ComponentType<P
         const data = await getOrderById(currentOrder?._id as any);
         dispatch(setCurrentOrder(data));
     };
+
+
+    useEffect(()=>{
+        if(currentOrder){
+            const socketInstance = io(SOCKET_URL,{
+                transports:['websocket'],
+                withCredentials:false,
+            });
+            socketInstance.emit('joinRoom',currentOrder?._id);
+
+            socketInstance.on('liveTrackingUpdates',(updateOrder)=>{
+                fetchOrderDetails();
+                console.log('RECEIVING LIVE UPDATES');
+            });
+
+            socketInstance.on('orderConfirmed',(confirmOrder)=>{
+                fetchOrderDetails();
+                console.log('ORDER CONFIRMATION LIVE UPDATES');
+            });
+
+            return ()=>{
+                socketInstance.disconnect();
+            };
+        }
+    },[currentOrder]);
 
             return(
                 <View style={styles.container}>
