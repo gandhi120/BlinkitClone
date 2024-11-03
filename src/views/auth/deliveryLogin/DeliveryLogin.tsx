@@ -50,7 +50,7 @@ const DeliveryLogin = ()=> {
               </CustomText>
 
               <CustomInput
-              onChangeText={setEmail}
+              onChangeText={(text)=>setEmail(text.trim())}
               value={email}
               left={<Icon
                     name={'mail'}
@@ -63,7 +63,7 @@ const DeliveryLogin = ()=> {
               />
 
             <CustomInput
-              onChangeText={setPassword}
+              onChangeText={(text)=>setPassword(text.trim())}
               value={password}
               left={<Icon
                     name={'key-sharp'}
