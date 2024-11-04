@@ -53,3 +53,33 @@ export const fetchOrders =  async (status:string,userId:string,branchId:string) 
     return null;
   }
 };
+
+// sendLiveOrderUpdates
+
+
+export const sendLiveOrderUpdates =  async (id:string,location:any,status:string) => {
+  try {
+    const response = await apiClient.patch(`/order/${id}/status`,{
+      deliveryPersonLocation:location,
+      status,
+    });
+    return response.data;
+  } catch (error) {
+    console.log('sendLiveOrderUpdates ERROR',error);
+    return null;
+  }
+};
+
+export const confirmOrder =  async (id:string,location:any) => {
+  try {
+    const response = await apiClient.post(`/order/${id}/confirm`,{
+      deliveryPersonLocation:location,
+    });
+    return response.data;
+  } catch (error) {
+    console.log('confirmOrder ERROR',error);
+    return null;
+  }
+};
+
+//

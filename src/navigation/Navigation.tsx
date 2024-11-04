@@ -12,6 +12,7 @@ import ProductOrder from '@views/order/ProductOrder';
 import OrderSuccess from '@views/order/OrderSuccess';
 import LiveTracking from '@views/map/LiveTracking';
 import Profile from '@views/profile/Profile';
+import DeliveryMap from '@views/delivery/DeliveryMap';
 // import Altitude from '@views/Altitude';
 const Stack = createNativeStackNavigator();
 const Navigation:FC = () =>{
@@ -30,11 +31,8 @@ const Navigation:FC = () =>{
         <Stack.Screen name="ProductOrder" component={ProductOrder}/>
         <Stack.Screen name="OrderSuccess" component={OrderSuccess}/>
         <Stack.Screen name="LiveTracking" component={LiveTracking}/>
+        <Stack.Screen name="DeliveryMap" component={DeliveryMap}/>
         <Stack.Screen name="Profile" component={Profile}/>
-
-
-
-
 
 
         <Stack.Screen options={{

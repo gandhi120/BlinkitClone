@@ -1,7 +1,7 @@
 import CustomText from '@components/ui/CustomText';
 import { Colors, Fonts } from '@utils/Constants';
-import React, { FC, useState } from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { FC } from 'react';
+import {  StyleSheet, TouchableOpacity, View } from 'react-native';
 
 interface TabBarProps{
     selectedTab:'available'|'delivered';
