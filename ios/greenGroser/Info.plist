@@ -24,6 +24,8 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MBXAccessToken</key>
+	<string>pk.eyJ1IjoidmFydW5nYW5kaGkxMjAiLCJhIjoiY20zMmhmOTQwMTZwcjJrcHhoaDNvbGYzaiJ9.dTOus7m6RY8i1RbMvKJVng</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -31,15 +33,24 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
-<!-- Location permission -->
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your location is used to show the delivery progress on the map</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Your location is used to show the delivery progress on the map</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Your location is used to show the delivery progress on the map</string>
-<!-- Location permission -->
-
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location is used to show the delivery progress on the map</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Okra-Bold.ttf</string>
+		<string>Okra-ExtraBold.ttf</string>
+		<string>Okra-Medium.ttf</string>
+		<string>Okra-MediumLight.ttf</string>
+		<string>Okra-Regular.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Ionicons.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -54,17 +65,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Okra-Bold.ttf</string>
-		<string>Okra-ExtraBold.ttf</string>
-		<string>Okra-Medium.ttf</string>
-		<string>Okra-MediumLight.ttf</string>
-		<string>Okra-Regular.ttf</string>
-		<string>MaterialCommunityIcons.ttf</string>
-		<string>MaterialIcons.ttf</string>
-		<string>EvilIcons.ttf</string>
-		<string>Ionicons.ttf</string>
-	</array>
 </dict>
 </plist>

@@ -1,5 +1,8 @@
 # Resolve react_native_pods.rb with node to allow for hoisting
-
+pre_install do |installer|
+  $RNMapboxMaps.pre_install(installer)
+end
+ 
  def node_require(script)
    # Resolve script with node to allow for hoisting
   require Pod::Executable.execute_command('node', ['-p',
@@ -44,6 +47,7 @@ target 'greenGroser' do
 
   post_install do |installer|
     # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
+      $RNMapboxMaps.post_install(installer)
     react_native_post_install(
       installer,
       config[:reactNativePath],

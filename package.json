@@ -24,6 +24,7 @@
     "@react-navigation/native": "6.1.18",
     "@react-navigation/native-stack": "6.11.0",
     "@reduxjs/toolkit": "2.3.0",
+    "@rnmapbox/maps": "^10.1.33",
     "axios": "1.7.7",
     "jwt-decode": "4.0.0",
     "lottie-react-native": "7.0.0",
