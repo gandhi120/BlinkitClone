@@ -16,21 +16,25 @@ import { useDispatch } from 'react-redux';
 
 const DeliveryLogin = ()=> {
   const dispatch = useDispatch();
-  const [email,setEmail] = useState('');
-  const [password,setPassword] = useState('');
+  const [email,setEmail] = useState('deliveryPartner@gmail.com');
+  const [password,setPassword] = useState('12345678');
   const [loading,setLoading] = useState(false);
 
   const handleLogin = async()=>{
     setLoading(true);
     try {
       dispatch(deliveryLogin({email,password}));
+      setTimeout(async() => {
       resetAndNavigate('DeliveryDashboard');
+    }, 500);
     } catch (error) {
       Alert.alert('Login Failed');
     }finally{
       setLoading(true);
     }
   };
+
+
     return (
       <CustomSafeAreaView>
         <ScrollView keyboardShouldPersistTaps={'handled'} keyboardDismissMode="on-drag">

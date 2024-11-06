@@ -1,8 +1,8 @@
 // DeliveryMap
 import React, { FC, useEffect, useState } from 'react';
-import {  Alert, ScrollView, StyleSheet, View } from 'react-native';
+import {  ActivityIndicator, Alert, ScrollView, StyleSheet, View } from 'react-native';
 import { setCurrentOrder } from '@store/slice/authSlice';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/store';
 import { confirmOrder, getOrderById, sendLiveOrderUpdates } from '@service/orderService';
 import { Colors, Fonts } from '@utils/Constants';
@@ -21,6 +21,10 @@ const DeliveryMap:FC = () => {
     const {user} = useSelector((state: RootState) => state.auth);
     const [orderData,setOrderData] = useState<any>(null);
     const [myLocation,setMyLocation] = useState<any>(null);
+    const [loader,setLoader] = useState<any>(true);
+    const dispatch = useDispatch();
+
+
     const route = useRoute();
 
     const orderDetails = route?.params as Record<string,any>;
@@ -28,7 +32,9 @@ const DeliveryMap:FC = () => {
     const fetchOrderDetails = async()=>{
         const data = await getOrderById(orderDetails?._id as any);
         setOrderData(data);
-        // dispatch(setCurrentOrder(data));
+        setTimeout(() => {
+            setLoader(false);
+        }, 3000);
     };
 
     useEffect(()=>{
@@ -36,8 +42,12 @@ const DeliveryMap:FC = () => {
     },[]);
 
     useEffect(()=>{
+        console.log('useEffect:MAP');
+
         const watchId = Geolocation.watchPosition(
             async(position)=>{
+                console.log('position.coords',position.coords);
+
                 const {latitude,longitude} = position.coords;
                 setMyLocation({latitude,longitude});
             },
@@ -50,9 +60,10 @@ const DeliveryMap:FC = () => {
     },[]);
 
     const acceptOrder = async()=>{
+        setLoader(true);
         const data = await confirmOrder(orderData?._id,myLocation);
         if(data){
-            setCurrentOrder(data);
+            dispatch(setCurrentOrder(data));
             Alert.alert('Order Accepted, Grab your package');
         }else{
             Alert.alert('There was an error');
@@ -62,9 +73,10 @@ const DeliveryMap:FC = () => {
 
 
     const orderPickedUp = async()=>{
+        setLoader(true);
         const data = await sendLiveOrderUpdates(orderData?._id,myLocation,'arriving');
         if(data){
-            setCurrentOrder(data);
+            dispatch(setCurrentOrder(data));
             Alert.alert('Order Accepted, Grab your package');
         }else{
             Alert.alert('There was an error');
@@ -73,9 +85,10 @@ const DeliveryMap:FC = () => {
     };
 
     const orderDelivered = async()=>{
+        setLoader(true);
         const data = await sendLiveOrderUpdates(orderData?._id,myLocation,'delivered');
         if(data){
-            setCurrentOrder(data);
+            dispatch(setCurrentOrder(data));
             Alert.alert('Order Accepted, Grab your package');
         }else{
             Alert.alert('There was an error');
@@ -106,67 +119,89 @@ const DeliveryMap:FC = () => {
                 fetchOrderDetails();
             }
         }
+        // sendLiveUpdates();
     },[myLocation]);
+    if(orderData?.deliveryPersonLocation){
+        console.log('orderData?.deliveryPersonLocation',    orderData?.deliveryPersonLocation);
+    }
 
 
-  return (
-    <View style={styles.container}>
-      <LiveHeader type="Delivery" title={message} secondTitle={'Delivery in 10 minutes'}/>
-      <ScrollView
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={styles.scrollContent}>
-            <LiveMap/>
+console.log('myLocation?.myLocation', myLocation);
+if(loader){
+    return (
+        <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
+        <ActivityIndicator color={'green'} size={'large'} style={{alignSelf:'center'}}/>
+        </View>
+    );
+}
+    return (
+        <View style={styles.container}>
+          <LiveHeader type="Delivery" title={message} secondTitle={'Delivery in 10 minutes'}/>
+          <ScrollView
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={styles.scrollContent}>
+             <LiveMap
+                    hasAccepted={orderData?.deliveryPartner?._id == user?._id && orderData?.status === 'confirmed'}
+                    pickupLocation={orderData?.pickupLocation || null}
+                    hasPickedUp={orderData?.status === 'arriving'}
+                    deliveryPersonLocation={
+                        orderData?.deliveryPersonLocation.latitude !== null && orderData?.deliveryPersonLocation.latitude !== undefined
+                        && orderData?.deliveryPersonLocation.longitude !== null && orderData?.deliveryPersonLocation.longitude !== undefined ?
+                        orderData?.deliveryPersonLocation : myLocation}
+                    deliveryLocation={orderData?.deliveryLocation || null}
+                />
 
-            <DeliveryDetails details={orderData?.customer}/>
-            <OrderSummary order={orderData}/>
+                <DeliveryDetails details={orderData?.customer}/>
+                <OrderSummary order={orderData}/>
 
-                <CustomText
-                    variant="h6"
-                    fontFamily={Fonts.SemiBold}
-                    style={{opacity:0.6,marginTop:20}}>
-                      Varun Gandhi x Blinkit
-                </CustomText>
+                    <CustomText
+                        variant="h6"
+                        fontFamily={Fonts.SemiBold}
+                        style={{opacity:0.6,marginTop:20}}>
+                          Varun Gandhi x Blinkit
+                    </CustomText>
 
-      </ScrollView>
+          </ScrollView>
 
-       {orderData?.status !== 'delivered' &&
-                orderData?.status !== 'cancelled' &&
-                <View style={[hocStyles.cartContainer,styles.buttonContainer]}>
-                    {orderData?.status === 'available' &&
-                        <CustomButton
-                            disabled={false}
-                            title="Accept Order"
-                            onPress={acceptOrder}
-                            loading={false}
-                        />
+           {orderData?.status !== 'delivered' &&
+                    orderData?.status !== 'cancelled' &&
+                    <View style={[hocStyles.cartContainer,styles.buttonContainer]}>
+                        {orderData?.status === 'available' &&
+                            <CustomButton
+                                disabled={false}
+                                title="Accept Order"
+                                onPress={acceptOrder}
+                                loading={false}
+                            />
+                        }
+
+                        {orderData?.status === 'confirmed' &&
+                        orderData?.deliveryPartner?._id === user?._id &&
+                            <CustomButton
+                                disabled={false}
+                                title="Order Picked Up"
+                                onPress={orderPickedUp}
+                                loading={false}
+                            />
+                        }
+
+                        {orderData?.status === 'arriving' &&
+                        orderData?.deliveryPartner?._id === user?._id &&
+                            <CustomButton
+                                disabled={false}
+                                title="Delivered"
+                                onPress={orderDelivered}
+                                loading={false}
+                            />
+                        }
+                    </View>
                     }
 
-                    {orderData?.status === 'confirmed' &&
-                    orderData?.deliveryPartner?._id === user?._id &&
-                        <CustomButton
-                            disabled={false}
-                            title="Order Picked Up"
-                            onPress={orderPickedUp}
-                            loading={false}
-                        />
-                    }
-
-                    {orderData?.status === 'arriving' &&
-                    orderData?.deliveryPartner?._id === user?._id &&
-                        <CustomButton
-                            disabled={false}
-                            title="Delivered"
-                            onPress={orderDelivered}
-                            loading={false}
-                        />
-                    }
-                </View>
-                }
 
 
+        </View>
+      );
 
-    </View>
-  );
 };
 
 const styles = StyleSheet.create({

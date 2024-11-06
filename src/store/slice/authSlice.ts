@@ -37,6 +37,7 @@ export const deliveryLogin = createAsyncThunk<any,UpdateUserParams>('deliveryLog
     const response = await apiClient.post('/delivery/login', {email,password} );
     return response.data;
   } catch (error) {
+    console.log('error',error);
     return thunkApi.rejectWithValue(error);
   }
 

@@ -9,6 +9,7 @@ import { fetchOrders } from '@service/orderService';
 import { setUser } from '@store/slice/authSlice';
 import { RootState } from '@store/store';
 import { Colors } from '@utils/Constants';
+import withLiveStatus from '@views/map/WithLiveStatus';
 import React, { FC, useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, RefreshControl, SafeAreaView, StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -31,7 +32,7 @@ const DeliveryDashboard:FC = ()=> {
     Geolocation.getCurrentPosition(
       position=>{
         const {latitude,longitude} = position.coords;
-        reverseGeocode(latitude,longitude,setUser,dispatch);
+        reverseGeocode(21.2027982,72.789017,setUser,dispatch);
       },
       error=>console.log('error',error),
         {
@@ -44,6 +45,7 @@ const DeliveryDashboard:FC = ()=> {
   useEffect(()=>{
     updateUser();
   },[]);
+
 
   const renderOrderItem = ({item,index}:any)=>{
     return(
@@ -125,4 +127,4 @@ const styles = StyleSheet.create({
     alignItems:'center',
   },
 });
-export default DeliveryDashboard;
+export default withLiveStatus(DeliveryDashboard);

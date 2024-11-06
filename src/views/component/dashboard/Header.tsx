@@ -8,6 +8,7 @@ import {  Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import Icon  from 'react-native-vector-icons/MaterialCommunityIcons';
 import { reverseGeocode } from '@service/mapServices';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -19,7 +20,8 @@ const updateUserLocation = async()=>{
   Geolocation.getCurrentPosition(
     position=>{
       const {latitude,longitude} = position.coords;
-      reverseGeocode(latitude,longitude,setUser,dispatch);
+
+      reverseGeocode(21.2243329,72.7912781,setUser,dispatch);
     },
     error=>console.log('error',error),
       {

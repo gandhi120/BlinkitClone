@@ -1,10 +1,10 @@
 import { RootState } from '@store/store';
-import React, { FC, useEffect } from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import React, { FC, useEffect, useState } from 'react';
+import { ActivityIndicator, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentOrder } from '@store/slice/authSlice';
 import { useNavigationState } from '@react-navigation/native';
-import { getOrderById } from '@service/orderService';
+import { getAllOrdersByUserId, getOrderById } from '@service/orderService';
 import { hocStyles } from '@styles/globalStyles';
 import CustomText from '@components/ui/CustomText';
 import { Colors, Fonts } from '@utils/Constants';
@@ -17,11 +17,31 @@ import { SOCKET_URL } from '@service/config';
 const withLiveStatus = <P extends object>(WrappedComponent:React.ComponentType<P>):FC<P>=>{
 
     const WithLiveComponent:FC<P> = (props)=>{
+        const [loading, setLoading] = useState(false);
+        const {user,currentOrder} = useSelector((state: RootState) => state.auth);
+        const routeName = useNavigationState(state=>state.routes[state.index]?.name);
+
+        useEffect(()=>{
+            // if(routeName === 'DeliveryDashboard'){
+                setLoading(true);
+                getAllData();
+            // }
+        },[]);
+
+        const getAllData = async()=>{
+            if(user?._id && user?.branch){
+                    const data = await getAllOrdersByUserId(routeName,user?._id,user?.branch);
+                    dispatch(setCurrentOrder(data[0]));
+                    setLoading(false);
+            }else{
+                setLoading(false);
+            }
+
+        };
 
         const dispatch = useDispatch();
 
-    const {currentOrder} = useSelector((state: RootState) => state.auth);
-    const routeName = useNavigationState(state=>state.routes[state.index]?.name);
+
 
     const fetchOrderDetails = async()=>{
         const data = await getOrderById(currentOrder?._id as any);
@@ -53,11 +73,21 @@ const withLiveStatus = <P extends object>(WrappedComponent:React.ComponentType<P
         }
     },[currentOrder]);
 
+    const handleOnView = ()=>{
+        if(routeName === 'ProductDashboard'){
+            navigate('LiveTracking');
+        }else if(routeName === 'DeliveryDashboard'){
+            navigate('DeliveryMap',{...currentOrder});
+        }
+    };
+
+if (loading) {return <View style={styles.loading}><ActivityIndicator color={'green'} size={'large'} style={{alignSelf:'center'}}/></View>;}
+
             return(
                 <View style={styles.container}>
                     <WrappedComponent {...props}/>
 
-                    {currentOrder && routeName === 'ProductDashboard' && (
+                    {currentOrder && (routeName === 'ProductDashboard' || routeName === 'DeliveryDashboard') && (
                         <View style={[hocStyles.cartContainer,{flexDirection:'row',alignItems:'center'}]}>
                             <View style={styles.flexRow}>
 
@@ -69,13 +99,13 @@ const withLiveStatus = <P extends object>(WrappedComponent:React.ComponentType<P
                                     <CustomText variant="h7" fontFamily={Fonts.SemiBold}>
                                         Order is {currentOrder?.status}
                                     </CustomText>
-                                    <CustomText variant="h9" fontFamily={Fonts.Medium}>
+                                     <CustomText variant="h9" fontFamily={Fonts.Medium}>
                                         {currentOrder?.items![0]?.item.name +
                                          (currentOrder?.item?.length - 1 > 0 ? `and ${(currentOrder?.items?.length - 1)}+ items`
                                          : '')}
                                     </CustomText>
                                 </View>
-                                <TouchableOpacity onPress={()=>navigate('LiveTracking')} style={styles.btn}>
+                                <TouchableOpacity onPress={()=>handleOnView()} style={styles.btn}>
                                 <CustomText variant="h8" style={{color:Colors.secondary}} fontFamily={Fonts.Medium}>
                                     View
                                 </CustomText>
@@ -117,6 +147,12 @@ const styles = StyleSheet.create({
         borderWidth:0.7,
         borderColor:Colors.secondary,
         borderRadius:5,
+    },
+    loading:{
+        flex:1,
+        backgroundColor:'white',
+        alignItems:'center',
+        justifyContent:'center',
     },
 });
 

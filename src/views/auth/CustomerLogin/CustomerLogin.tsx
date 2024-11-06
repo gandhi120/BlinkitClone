@@ -19,7 +19,7 @@ const bottomColors = [...lightColors].reverse();
 const CustomerLogin:FC = ()=> {
 
 const dispatch = useDispatch();
-const [phoneNumber,setPhoneNumber] = useState('');
+const [phoneNumber,setPhoneNumber] = useState('9106562012');
 const [loading,setLoading] = useState(false);
 const[gestureSequence,setGestureSequence] = useState<string[]>([]);
 const keyBoardOffsetHeight = useKeyBoardOffsetHeight();
