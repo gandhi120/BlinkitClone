@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {apiClient} from '@service/authService';
 import reduxStorage, { clearAllData } from '@store/mmkvStorage/storage';
 import { resetAndNavigate } from '@utils/NavigationUtils';
-import {persistor} from '@store/store';
 interface AuthState {
   user: Record<string,any>|null;
   currentOrder:Record<string,any>|null
@@ -79,7 +78,6 @@ const authSlice = createSlice({
     logout:(state)=>{
       state.user = null;
       state.currentOrder = null;
-      persistor.purge();
     },
   },
   extraReducers:(builder)=>{

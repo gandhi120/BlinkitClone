@@ -34,7 +34,7 @@ const deliveryLocationCheck = deliveryLocation?.longitude !== null &&
 
   useEffect(()=>{
 
-      if (hasAccepted && deliveryPersonLocationCheck) {
+      if ((hasAccepted || hasPickedUp) && deliveryPersonLocationCheck) {
         // Determine route from delivery person's location to the appropriate destination
         const origin = hasPickedUp ? pickupLocation : deliveryPersonLocation;
         const destination = hasPickedUp ? deliveryLocation : pickupLocation;
@@ -42,7 +42,7 @@ const deliveryLocationCheck = deliveryLocation?.longitude !== null &&
       }
   },[hasAccepted,hasPickedUp]);
 
-  const getRoute = async (origin:any, destination:any) => {
+  const getRoute = async (origin, destination) => {
     try {
       const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${origin.longitude},${origin.latitude};${destination.longitude},${destination.latitude}?geometries=geojson&access_token=${MAP_ACCESS_TOKEN}`;
       const response = await axios.get(url);
@@ -70,7 +70,7 @@ const deliveryLocationCheck = deliveryLocation?.longitude !== null &&
 
 
           {/* Delivery Person Marker */}
-          {deliveryPersonLocationCheck &&
+          {deliveryPersonLocationCheck && !hasPickedUp &&
             <Mapbox.PointAnnotation
               id="deliveryPerson"
               coordinate={[deliveryPersonLocation.longitude, deliveryPersonLocation.latitude]}

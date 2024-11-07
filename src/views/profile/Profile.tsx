@@ -2,8 +2,8 @@ import React, { FC, useEffect, useState } from 'react';
 import {  FlatList, StyleSheet, View } from 'react-native';
 import { logout } from '@store/slice/authSlice';
 import { clearCart } from '@store/slice/cartSlice';
-
-import { useSelector } from 'react-redux';
+import {persistor} from '@store/store';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/store';
 import { fetchCustomerOrder } from '@service/orderService';
 import CustomHeader from '@components/ui/CustomHeader';
@@ -19,6 +19,7 @@ const Profile:FC = () => {
 
     const[orders,setOrders] = useState([]);
     const {user} = useSelector((state: RootState) => state.auth);
+    const dispatch = useDispatch();
 
 const fetchOrders = async()=>{
     const data = await fetchCustomerOrder(user?._id);
@@ -54,9 +55,12 @@ const renderHeader = ()=>{
             <ActionButton icon="book-outline" label="Address book"/>
             <ActionButton icon="information-circle-outline" label="About us"/>
             <ActionButton icon="book-outline" label="Logout" onPress={()=>{
-                clearCart();
-                logout();
+                dispatch(clearCart());
+                dispatch(logout());
                 clearAllData();
+                if(persistor.purge){
+                  persistor.purge();
+                }
                 resetAndNavigate('CustomerLogin');
             }}/>
             <CustomText variant="h8" style={styles.pastText}>

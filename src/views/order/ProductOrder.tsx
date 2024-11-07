@@ -47,7 +47,7 @@ const handlePlaceOrder = async()=>{
 
   if(data !== null){
     dispatch(setCurrentOrder(data));
-    clearCart();
+    dispatch(clearCart());
     navigate('OrderSuccess',{...data});
   }else{
     Alert.alert('There was an error');

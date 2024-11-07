@@ -9,7 +9,7 @@ import { fetchOrders } from '@service/orderService';
 import { setUser } from '@store/slice/authSlice';
 import { RootState } from '@store/store';
 import { Colors } from '@utils/Constants';
-import withLiveStatus from '@views/map/WithLiveStatus';
+import withLiveOrder from '@views/map/WithLiveOrder';
 import React, { FC, useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, RefreshControl, SafeAreaView, StyleSheet, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -49,7 +49,7 @@ const DeliveryDashboard:FC = ()=> {
 
   const renderOrderItem = ({item,index}:any)=>{
     return(
-      <OrderItem index={index} item={item}/>
+      <OrderItem index={index} item={item} selectedTab={selectedTab}/>
     );
   };
 
@@ -127,4 +127,4 @@ const styles = StyleSheet.create({
     alignItems:'center',
   },
 });
-export default withLiveStatus(DeliveryDashboard);
+export default withLiveOrder(DeliveryDashboard);

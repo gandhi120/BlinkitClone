@@ -4,22 +4,24 @@ import { ActivityIndicator, Image, StyleSheet, TouchableOpacity, View } from 're
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentOrder } from '@store/slice/authSlice';
 import { useNavigationState } from '@react-navigation/native';
-import { getAllOrdersByUserId, getOrderById } from '@service/orderService';
+import { getAllOrdersByUserId, getOrderById, sendLiveOrderUpdates } from '@service/orderService';
 import { hocStyles } from '@styles/globalStyles';
 import CustomText from '@components/ui/CustomText';
 import { Colors, Fonts } from '@utils/Constants';
-import { navigate, resetAndNavigate } from '@utils/NavigationUtils';
-import  io  from 'socket.io-client';
-import { SOCKET_URL } from '@service/config';
+import { navigate } from '@utils/NavigationUtils';
+import Geolocation from '@react-native-community/geolocation';
 
 
 
-const withLiveStatus = <P extends object>(WrappedComponent:React.ComponentType<P>):FC<P>=>{
+const withLiveOrder = <P extends object>(WrappedComponent:React.ComponentType<P>):FC<P>=>{
 
     const WithLiveComponent:FC<P> = (props)=>{
         const [loading, setLoading] = useState(false);
+        const [myLocation, setMyLocation] = useState(null);
         const {user,currentOrder} = useSelector((state: RootState) => state.auth);
         const routeName = useNavigationState(state=>state.routes[state.index]?.name);
+        const dispatch = useDispatch();
+
 
         useEffect(()=>{
             // if(routeName === 'DeliveryDashboard'){
@@ -39,51 +41,52 @@ const withLiveStatus = <P extends object>(WrappedComponent:React.ComponentType<P
 
         };
 
-        const dispatch = useDispatch();
 
 
 
     const fetchOrderDetails = async()=>{
         const data = await getOrderById(currentOrder?._id as any);
-        console.log('data',data);
-
         dispatch(setCurrentOrder(data));
     };
 
 
     useEffect(()=>{
         if(currentOrder){
-            const socketInstance = io(SOCKET_URL,{
-                transports:['websocket'],
-                withCredentials:false,
-            });
-            socketInstance.emit('joinRoom',currentOrder?._id);
-
-            socketInstance.on('liveTrackingUpdates',(updateOrder)=>{
-                console.log('liveTrackingUpdates',updateOrder);
-                if(updateOrder.status === 'delivered'){
-                    dispatch(setCurrentOrder(null));
-                    resetAndNavigate('ProductDashboard');
-                }else{
-                    fetchOrderDetails();
-                }
-                console.log('RECEIVING LIVE UPDATES');
-            });
-
-            socketInstance.on('orderConfirmed',(confirmOrder)=>{
-                console.log('orderConfirmed');
-                fetchOrderDetails();
-                console.log('ORDER CONFIRMATION LIVE UPDATES');
-            });
+            const watchId = Geolocation.watchPosition(
+                async (position)=>{
+                    const {latitude,longitude} = position.coords;
+                    console.log('LIVE TRACKING','LAT: ',new Date().toLocaleTimeString());
+                    setMyLocation({latitude,longitude});
+                },
+                (error)=> console.log('Error fetching location',error),
+                {enableHighAccuracy:true,distanceFilter:2}
+            );
 
             return ()=>{
-                socketInstance.disconnect();
+               Geolocation.clearWatch(watchId);
             };
         }
     },[currentOrder]);
 
+    useEffect(()=>{
+        async function sendLiveUpdates() {
+            if(currentOrder?.deliveryPartner?._id == user?._id &&
+                currentOrder?.status !== 'delivered' &&
+                currentOrder?.status !== 'cancelled'
+            ){
+                await sendLiveOrderUpdates(currentOrder?._id,myLocation,currentOrder?.status);
+                fetchOrderDetails();
+            }
+        }
+
+        if(currentOrder !== null && currentOrder !== undefined){
+            sendLiveUpdates();
+        }
+
+    },[myLocation]);
+
     const handleOnView = ()=>{
-            navigate('LiveTracking');
+            navigate('DeliveryMap',{...currentOrder});
     };
 
 if (loading) {return <View style={styles.loading}><ActivityIndicator color={'green'} size={'large'} style={{alignSelf:'center'}}/></View>;}
@@ -92,7 +95,7 @@ if (loading) {return <View style={styles.loading}><ActivityIndicator color={'gre
                 <View style={styles.container}>
                     <WrappedComponent {...props}/>
 
-                    {currentOrder && currentOrder !== null && (routeName === 'ProductDashboard' || routeName === 'ProductCategories') && (
+                    {currentOrder !== null && currentOrder !== undefined && (
                         <View style={[hocStyles.cartContainer,{flexDirection:'row',alignItems:'center'}]}>
                             <View style={styles.flexRow}>
 
@@ -161,4 +164,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default withLiveStatus;
+export default withLiveOrder;

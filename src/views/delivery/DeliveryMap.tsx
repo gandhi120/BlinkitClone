@@ -15,6 +15,7 @@ import DeliveryDetails from '@views/map/DeliveryDetails';
 import OrderSummary from '@views/map/OrderSummary';
 import CustomButton from '@components/ui/CustomButton';
 import { hocStyles } from '@styles/globalStyles';
+import { resetAndNavigate } from '@utils/NavigationUtils';
 
 
 const DeliveryMap:FC = () => {
@@ -88,7 +89,8 @@ const DeliveryMap:FC = () => {
         setLoader(true);
         const data = await sendLiveOrderUpdates(orderData?._id,myLocation,'delivered');
         if(data){
-            dispatch(setCurrentOrder(data));
+            dispatch(setCurrentOrder(null));
+            resetAndNavigate('DeliveryDashboard');
             Alert.alert('Order Accepted, Grab your package');
         }else{
             Alert.alert('There was an error');
@@ -119,14 +121,9 @@ const DeliveryMap:FC = () => {
                 fetchOrderDetails();
             }
         }
-        // sendLiveUpdates();
+        sendLiveUpdates();
     },[myLocation]);
-    if(orderData?.deliveryPersonLocation){
-        console.log('orderData?.deliveryPersonLocation',    orderData?.deliveryPersonLocation);
-    }
 
-
-console.log('myLocation?.myLocation', myLocation);
 if(loader){
     return (
         <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>

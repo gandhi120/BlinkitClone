@@ -36,7 +36,7 @@ interface CartItem {
     }
   }
 
-  const OrderItem:FC<{item:Order;index:number}> = ({item}) => {
+  const OrderItem:FC<{item:Order;index:number;selectedTab:string}> = ({item,selectedTab}) => {
 
   return (
     <View style={styles.container}>
@@ -80,7 +80,7 @@ interface CartItem {
                     <TouchableOpacity style={styles.iconContainer} onPress={()=>{
                         navigate('DeliveryMap',{...item});
                     }}>
-                        <Icon name="arrow-right-circle" size={RFValue(24)} color={Colors.primary}/>
+                       {selectedTab === 'available' && <Icon name="arrow-right-circle" size={RFValue(24)} color={Colors.primary}/>}
                     </TouchableOpacity>
                 </View>
     </View>
