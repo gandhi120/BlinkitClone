@@ -50,7 +50,10 @@ const handleAuth = async()=>{
   try {
     dispatch(fetchUser(phoneNumber));
     // await customerLogin(phoneNumber);
-    resetAndNavigate('ProductDashboard');
+    setTimeout(() => {
+      resetAndNavigate('ProductDashboard');
+    }, 500);
+
   } catch (error) {
     Alert.alert('Login Failed');
   }finally{

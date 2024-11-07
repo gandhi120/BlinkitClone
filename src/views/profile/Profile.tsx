@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import {  FlatList, StyleSheet, View } from 'react-native';
-import { logout } from '@store/slice/authSlice';
+import { logout, setCurrentOrder } from '@store/slice/authSlice';
 import { clearCart } from '@store/slice/cartSlice';
 import {persistor} from '@store/store';
 import { useDispatch, useSelector } from 'react-redux';
@@ -55,6 +55,7 @@ const renderHeader = ()=>{
             <ActionButton icon="book-outline" label="Address book"/>
             <ActionButton icon="information-circle-outline" label="About us"/>
             <ActionButton icon="book-outline" label="Logout" onPress={()=>{
+              dispatch(setCurrentOrder(null));
                 dispatch(clearCart());
                 dispatch(logout());
                 clearAllData();

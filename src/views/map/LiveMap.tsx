@@ -2,7 +2,7 @@
 import MapViewComponent from '@components/map/MapViewComponent';
 import { Colors } from '@utils/Constants';
 import { screenHeight } from '@utils/Scaling';
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {  StyleSheet, TouchableOpacity, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -21,6 +21,9 @@ const LiveMap:FC<LiveMapProps> = (
   {hasAccepted,pickupLocation,deliveryPersonLocation,hasPickedUp,deliveryLocation}
 ) => {
 
+  const[mapRef,setMapRef] = useState(null);
+  const[cameraRef,setCameraRef] = useState(null);
+
 useEffect(()=>{
   Mapbox.setAccessToken(MAP_ACCESS_TOKEN);
 },[]);
@@ -30,7 +33,9 @@ useEffect(()=>{
 
   return (
     <View style={styles.container}>
-       <MapViewComponent
+      <MapViewComponent
+        setMapRef={(ref:any)=>setMapRef(ref)}
+        setCameraRef={(ref:any)=>setCameraRef(ref)}
         hasAccepted={hasAccepted}
         pickupLocation={pickupLocation}
         hasPickedUp={hasPickedUp}
@@ -39,14 +44,12 @@ useEffect(()=>{
       />
 
       <TouchableOpacity style={styles.fitButton} onPress={()=>{
-        //  handleFitToPath(
-        //   mapRef,
-        //   deliveryPersonLocation,
-        //   pickupLocation,
-        //   deliveryLocation,
-        //   hasPickedUp,
-        //   hasAccepted
-        // );
+        let location = deliveryPersonLocation;
+        cameraRef?.current?.flyTo(
+        [location?.latitude,location?.longitude],
+        1000 // Duration in ms
+         );
+      cameraRef?.current?.zoomTo(15); // Set desired zoom level
       }}>
         <Icon name="target" size={RFValue(14)} color={Colors.text}/>
       </TouchableOpacity>

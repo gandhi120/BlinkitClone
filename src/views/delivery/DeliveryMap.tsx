@@ -194,8 +194,6 @@ if(loader){
                     </View>
                     }
 
-
-
         </View>
       );
 

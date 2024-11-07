@@ -41,7 +41,6 @@ useEffect(()=>{
       const transform = [{translateY:indicatorPosition.value}];
       return{transform};
   }});
-console.log('selectedCategory',selectedCategory);
 
   return (
     <View style={styles.sideBar}>

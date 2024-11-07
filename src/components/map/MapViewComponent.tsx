@@ -1,19 +1,28 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import {  StyleSheet, View } from 'react-native';
 import Mapbox from '@rnmapbox/maps';
 import { MAP_ACCESS_TOKEN } from '@service/config';
 import axios from 'axios';
 
 
-
 const MapViewComponent:FC = ({
+  setMapRef,
+  setCameraRef,
   hasAccepted,
   pickupLocation,
   hasPickedUp,
   deliveryPersonLocation,
   deliveryLocation,
 }:any) => {
+  const mapRef = useRef(null);
+  const cameraRef = useRef(null);
+
   const [routeCoordinates, setRouteCoordinates] = useState([]);
+
+  useEffect(()=>{
+    setMapRef(mapRef);
+    setCameraRef(cameraRef);
+  },[]);
 
 const deliveryPersonLocationCheck = deliveryPersonLocation?.longitude !== null &&
                                     deliveryPersonLocation?.longitude !== undefined &&
@@ -47,6 +56,7 @@ const deliveryLocationCheck = deliveryLocation?.longitude !== null &&
       const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${origin.longitude},${origin.latitude};${destination.longitude},${destination.latitude}?geometries=geojson&access_token=${MAP_ACCESS_TOKEN}`;
       const response = await axios.get(url);
       const route = response.data.routes[0].geometry.coordinates;
+
       setRouteCoordinates(route);
     } catch (error) {
       console.error('Error fetching route: ', error);
@@ -56,9 +66,12 @@ const deliveryLocationCheck = deliveryLocation?.longitude !== null &&
 
   return (
     <View style={{flex:1}}>
-     <Mapbox.MapView style={styles.map} styleURL={Mapbox.StyleURL.Street}>
+     <Mapbox.MapView
+     ref={mapRef}
+      style={styles.map} styleURL={Mapbox.StyleURL.Street}>
      {deliveryPersonLocationCheck &&
         <Mapbox.Camera
+        ref={cameraRef}
           zoomLevel={10}
           centerCoordinate={[
             deliveryPersonLocation?.longitude,

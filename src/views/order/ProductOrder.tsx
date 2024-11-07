@@ -26,7 +26,7 @@ const ProductOrder = () => {
 const [loading,setLoading] = useState(false);
 
 const handlePlaceOrder = async()=>{
-  if(currentOrder !== null){
+  if(currentOrder !== null && currentOrder !== undefined){
     Alert.alert('Let your First order to be delivered');
     return;
   }

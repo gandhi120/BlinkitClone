@@ -29,7 +29,7 @@ const withLiveStatus = <P extends object>(WrappedComponent:React.ComponentType<P
         },[]);
 
         const getAllData = async()=>{
-            if(user?._id && user?.branch){
+            if(user?._id){
                     const data = await getAllOrdersByUserId(routeName,user?._id,user?.branch);
                     dispatch(setCurrentOrder(data[0]));
                     setLoading(false);

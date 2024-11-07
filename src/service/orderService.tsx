@@ -27,7 +27,7 @@ export const getOrderById =  async (orderId:string) => {
 };
 
 export const getAllOrdersByUserId =  async (routeName:string,userId:string,branchId:string) => {
-  const uri = routeName === 'DeliveryDashboard' ? `/order?branchId=${branchId}&deliveryPartnerId=${userId}&status=confirmed` : `/order?customerId=${userId}&status=available`;
+  const uri = routeName === 'DeliveryDashboard' ? `/order?branchId=${branchId}&deliveryPartnerId=${userId}&status=confirmed` : `/order?customerId=${userId}&status=available&status=confirmed&status=arriving`;
   try {
     const response = await apiClient.get(uri);
     return response.data;

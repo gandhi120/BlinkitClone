@@ -24,7 +24,7 @@ const DeliveryLogin = ()=> {
     setLoading(true);
     try {
       dispatch(deliveryLogin({email,password}));
-      setTimeout(async() => {
+      setTimeout(() => {
       resetAndNavigate('DeliveryDashboard');
     }, 500);
     } catch (error) {
