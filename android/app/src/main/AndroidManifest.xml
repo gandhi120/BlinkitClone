@@ -13,7 +13,7 @@
       android:allowBackup="false"
       android:usesCleartextTraffic="true"
       android:hardwareAccelerated="true"
-      android:theme="@style/AppTheme"
+      android:theme="@style/SplashTheme"
       android:supportsRtl="true">
       <activity
         android:name=".MainActivity"
