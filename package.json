@@ -14,7 +14,9 @@
     "cleanGradle": "cd android && ./gradlew clean && cd ../",
     "podUnInstall": "cd ios && pod deintegrate && cd ../",
     "podSetup": "npm run podUnInstall && npm run podInstall",
-    "postinstall": "npx patch-package"
+    "postinstall": "npx patch-package",
+    "android:dev": "react-native run-android --variant=developmentdebug",
+    "pre-dev-build": "ENV=dev ./envscript.sh"
   },
   "dependencies": {
     "@homielab/react-native-auto-scroll": "0.0.10",
@@ -31,6 +33,7 @@
     "react": "18.3.1",
     "react-native": "0.75.4",
     "react-native-collapsible": "^1.6.2",
+    "react-native-config": "1.5.3",
     "react-native-device-info": "13.1.0",
     "react-native-extra-dimensions-android": "1.2.5",
     "react-native-geolocation-service": "^5.3.1",

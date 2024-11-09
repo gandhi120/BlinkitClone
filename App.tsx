@@ -88,7 +88,6 @@ setTimeout(() => {
             return false;
           }
         }
-        console.log('user?.role',user?.role);
 
         if(user?.role === 'Customer'){
           resetAndNavigate('ProductDashboard');
