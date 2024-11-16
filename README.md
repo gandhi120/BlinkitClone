@@ -1,5 +1,14 @@
 # 🚀 Blinkit Clone
 
+
+
+
+https://github.com/user-attachments/assets/ed571bf7-ed65-4c3e-9fa3-346719046578
+
+
+
+
+
 A fully functional Blinkit clone built with **React Native** **Redux toolkit** and **typescript**. This project simulates a grocery delivery app, showcasing key features like product browsing, cart management, and order tracking.
 
 🌟 **Key Features**
