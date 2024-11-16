@@ -63,11 +63,18 @@ During this project, I gained hands-on experience with:
 **🛠️ Tech Stack**
 
 Frontend - React Native, TypeScript
+
 State Management - Redux Toolkit
+
 Backend - Fastify
+
 Database -	MongoDB
+
 Real-Time -	WebSocket
+
 Maps - Mapbox
+
 Version Control - GitHub
+
 
    
