@@ -12,6 +12,7 @@ https://github.com/user-attachments/assets/ed571bf7-ed65-4c3e-9fa3-346719046578
 A fully functional Blinkit clone built with **React Native** and **Fastyfy**. This project simulates a grocery delivery app, showcasing key features like product browsing, cart management, and order tracking.
 
 🌟 **Key Features**
+
 🛒 **Product Listing & Search:** Browse and search for products from various categories.
 
 🗺️ **Map Integration:** Integrated Mapbox for accurate location features and store browsing.
